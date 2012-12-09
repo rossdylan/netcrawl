@@ -29,4 +29,4 @@ class Scanner(object):
     def run(self):
         while True:
             nextChunk = self.in_queue.get().data
-            self.process_chunk(self, nextChunk)
+            self.process_chunk(nextChunk)
