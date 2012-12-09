@@ -16,3 +16,7 @@ def run_chunker():
 def run_receiver():
     r = receiver.Receiver("localhost")
     r.run()
+
+def run_test():
+    c = chunker.Chunker("localhost")
+    c.run_test()

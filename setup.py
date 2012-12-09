@@ -16,5 +16,6 @@ setup(
     netcrawl_scanner = netcrawl:run_scanner
     netcrawl_chunker = netcrawl:run_chunker
     netcrawl_receiver = netcrawl:run_receiver
+    netcrawl_test = netcrawl:run_test
     """
     )
