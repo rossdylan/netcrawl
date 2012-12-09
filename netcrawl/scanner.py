@@ -21,7 +21,7 @@ class Scanner(object):
 
         result_xml = check_output(
                 shlex.split(
-                    self.scan_params.format(data.ip_range)))
+                    self.scan_params.format(data[range])))
         hosts = GenerateHosts(result_xml)
         map(lambda h: self.out_queue.put(h.to_dict()), hosts)
         print "Finished processing chunk {0}".format(data['id'])
