@@ -1,0 +1,16 @@
+netcrawl
+
+A 3 part app that scans the entire internet for web and ftp servers
+The 3 parts communicate using redis as a message queue
+
+chunker:
+	Stupidly segments the internet into /24 chunks
+	Sends a task to into the redis input queue with an id and a ip range
+
+scanner:
+	Do a crazy nmap scan to get some info on ports 21, 80, 443, 8000, 8080
+
+results:
+	The current results app currently just prints out whatever is sent into the
+	queue
+
