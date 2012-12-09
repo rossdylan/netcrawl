@@ -22,6 +22,8 @@ class Scanner(object):
         result_xml = check_output(
                 shlex.split(
                     self.scan_params.format(data[range])))
+
+        result_xml = result_xml.replace("ProxyChains-3.1 (http;//proxychains.sf.net)\n", "")
         hosts = GenerateHosts(result_xml)
         map(lambda h: self.out_queue.put(h.to_dict()), hosts)
         print "Finished processing chunk {0}".format(data['id'])
