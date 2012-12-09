@@ -52,7 +52,7 @@ def GenerateHosts(xml):
         mac = host.childNodes[4].getAttributeNode("addr").value
         dns = host.childNodes[6].childNodes[1].getAttributeNode("name").value
         ports = []
-        for port in host.getElementsByTageName("port"):
+        for port in host.getElementsByTagsName("port"):
             proto = port.getAttributeNode("protocol").value
             num = int(port.getAttributeNode("portid").value)
             state = port.childNodes[0].getAttributeNode("state").value
