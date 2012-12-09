@@ -7,14 +7,14 @@ setup(
     author='Ross Delinger',
     author_email='rossdylan@csh.rit.edu',
     install_requires = [
-        'redis-py',
-        'retask',
+        'redis',
+        'retask==0.3',
     ],
     zip_safe=False,
     entry_points="""
     [console_scripts]
     netcrawl_scanner = netcrawl:run_scanner
     netcrawl_chunker = netcrawl:run_chunker
-    netcrawl_receiver = netcrawl:run_chunker
+    netcrawl_receiver = netcrawl:run_receiver
     """
     )
