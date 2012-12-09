@@ -3,6 +3,8 @@ Split up the internet into a series of chunks
 """
 
 from RedisQueue import RedisQueue
+from time import sleep
+
 
 class Chunker(object):
     def __init__(self, redis_host):
@@ -22,4 +24,4 @@ class Chunker(object):
                            }
                     self.work_queue.put(task)
                     chunk_id += 1
-
+                    sleep(10)
