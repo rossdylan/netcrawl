@@ -71,5 +71,5 @@ def GenerateHosts(xml):
                 ports.append(Port(proto, num, state))
             parsed_hosts.append(Host(mac, ip, dns, ports))
         except Exception as e:
-            print "EXCEPTION: " + e
+            print "EXCEPTION: " + str(e)
     return parsed_hosts
