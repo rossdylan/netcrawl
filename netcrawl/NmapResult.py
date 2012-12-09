@@ -34,7 +34,7 @@ class Host(object):
         return {
                 "ip": self.ip,
                 "dns": self.dns,
-                "ports": self.ports.to_dict(),
+                "ports": map(lambda p: p.to_dict(),self.ports),
                 "mac": self.mac
                }
 
@@ -48,14 +48,28 @@ def GenerateHosts(xml):
     hosts = data.getElementsByTagName("host")
     parsed_hosts = []
     for host in hosts:
-        ip = host.childNodes[2].getAttributeNode("addr").value
-        mac = host.childNodes[4].getAttributeNode("addr").value
-        dns = host.childNodes[6].childNodes[1].getAttributeNode("name").value
-        ports = []
-        for port in host.getElementsByTagName("port"):
-            proto = port.getAttributeNode("protocol").value
-            num = int(port.getAttributeNode("portid").value)
-            state = port.childNodes[0].getAttributeNode("state").value
-            ports.append(Port(proto, num, state))
-        parsed_hosts.append(Host(mac, ip, dns, ports))
+        try:
+            ip = ""
+            mac = ""
+            dns = ""
+            if not len(host.childNodes) >= 7:
+                continue
+            if host.childNodes[2].hasAttribute("addr"):
+                ip = host.childNodes[2].getAttributeNode("addr").value
+                print ip
+            if host.childNodes[4].hasAttribute("addr"):
+                mac = host.childNodes[4].getAttributeNode("addr").value
+                print mac
+            if host.childNodes[6].childNodes[1].nodeType != 3 and len(host.childNodes[6].childNodes) >= 2 and host.childNodes[6].childNodes[1].hasAttribute("name"):
+                dns = host.childNodes[6].childNodes[1].getAttributeNode("name").value
+                print dns
+            ports = []
+            for port in host.getElementsByTagName("port"):
+                proto = port.getAttributeNode("protocol").value
+                num = int(port.getAttributeNode("portid").value)
+                state = port.childNodes[0].getAttributeNode("state").value
+                ports.append(Port(proto, num, state))
+            parsed_hosts.append(Host(mac, ip, dns, ports))
+        except Exception as e:
+            print "EXCEPTION: " + e
     return parsed_hosts
