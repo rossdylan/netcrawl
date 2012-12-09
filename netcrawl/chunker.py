@@ -13,7 +13,7 @@ class Chunker(object):
         for a in range(1, 255):
             for b in range(1, 255):
                 for c in range(1, 255):
-                    ip_range = "{0}.{1}.{2}.{3}.0/24".format(a, b, c)
+                    ip_range = "{0}.{1}.{2}.0/24".format(a, b, c)
                     print "Sending chunk {0} range: {1}".format(chunk_id,
                             ip_range)
                     task = {
