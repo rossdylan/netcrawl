@@ -56,13 +56,10 @@ def GenerateHosts(xml):
                 continue
             if host.childNodes[2].hasAttribute("addr"):
                 ip = host.childNodes[2].getAttributeNode("addr").value
-                print ip
             if host.childNodes[4].hasAttribute("addr"):
                 mac = host.childNodes[4].getAttributeNode("addr").value
-                print mac
             if host.childNodes[6].childNodes[1].nodeType != 3 and len(host.childNodes[6].childNodes) >= 2 and host.childNodes[6].childNodes[1].hasAttribute("name"):
                 dns = host.childNodes[6].childNodes[1].getAttributeNode("name").value
-                print dns
             ports = []
             for port in host.getElementsByTagName("port"):
                 proto = port.getAttributeNode("protocol").value
