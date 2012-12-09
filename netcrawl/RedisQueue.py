@@ -18,6 +18,6 @@ class RedisQueue(object):
         return self.super_queue.wait()
 
     def put(self, data):
-        self.super_queue.send(Task(data))
+        self.super_queue.enqueue(Task(data))
 
 
