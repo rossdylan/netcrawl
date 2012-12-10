@@ -21,7 +21,7 @@ class Scanner(object):
 
         result_xml = check_output(
                 shlex.split(
-                    self.scan_params.format(data[range])))
+                    self.scan_params.format(data['range'])))
 
         result_xml = result_xml.replace("ProxyChains-3.1 (http;//proxychains.sf.net)\n", "")
         hosts = GenerateHosts(result_xml)
