@@ -10,6 +10,7 @@ setup(
         'redis',
         'retask==0.3',
     ],
+    packages=['netcrawl'],
     zip_safe=False,
     entry_points="""
     [console_scripts]
