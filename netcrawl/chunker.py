@@ -4,7 +4,7 @@ Split up the internet into a series of chunks
 
 from RedisQueue import RedisQueue
 from time import sleep
-
+from random import shuffle
 
 class Chunker(object):
     def __init__(self, redis_host):
@@ -12,9 +12,9 @@ class Chunker(object):
 
     def run(self):
         chunk_id = 0
-        for a in range(1, 255):
-            for b in range(1, 255):
-                for c in range(1, 255):
+        for a in shuffle(range(1, 255)):
+            for b in shuffle(range(1, 255)):
+                for c in shuffle(range(1, 255)):
                     ip_range = "{0}.{1}.{2}.0/24".format(a, b, c)
                     print "Sending chunk {0} range: {1}".format(chunk_id,
                             ip_range)
