@@ -31,8 +31,8 @@ class WebPage(object):
 
 class Crawler(object):
     def __init__(self, redis_host):
-        self.output_queue = RedisQueue("outqueue")
-        self.pages_queue = RedisQueue("pagesqueue")
+        self.output_queue = RedisQueue(redis_host, "outqueue")
+        self.pages_queue = RedisQueue(redis_host, "pagesqueue")
 
     def run(self):
         while True:
