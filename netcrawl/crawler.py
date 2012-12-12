@@ -52,7 +52,7 @@ class Crawler(object):
                             result['ip'],
                             port))
                     if response.status_code == 200:
-                        pages += WebPage(response.text, result['ip'],port)
+                        pages.append(WebPage(response.text, result['ip'],port))
             pprint(pages)
 
 
