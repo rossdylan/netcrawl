@@ -44,8 +44,8 @@ class Crawler(object):
         while True:
             result = self.output_queue.get().data
             open_ports = filter(lambda p: p['state']=='open',result['ports'])
-            web_ports = filter(lambda p: p['num'] != '21', open_ports)
-            print "Processing: {0} {1}".format(result['ip'], web_ports)
+            web_ports = filter(lambda p: p['num'] != 21, open_ports)
+            print "Processing: {0}".format(result['ip'])
             pages = []
             if web_ports != []:
                 for port_dict in web_ports:
