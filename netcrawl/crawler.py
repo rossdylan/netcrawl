@@ -13,6 +13,7 @@ class WebPage(object):
         a_tags = soup.find_all('a')
 
         all_links = map(lambda l: l.get('href'),a_tags)
+        all_links = filter(lambda l: l != None, all_links)
         relative_links = filter(lambda l: l.startswith("/"), all_links)
         other_thinks = filter(lambda l: not l.startswith("/"), all_links)
         self.links = other_thinks
