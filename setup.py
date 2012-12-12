@@ -7,6 +7,7 @@ setup(
     author='Ross Delinger',
     author_email='rossdylan@csh.rit.edu',
     install_requires = [
+        'requests',
         'redis',
         'retask==0.3',
     ],
@@ -19,5 +20,6 @@ setup(
     netcrawl_receiver = netcrawl:run_receiver
     netcrawl_dump = netcrawl:run_dump
     netcrawl_test = netcrawl:run_test
+    netcrawl_crawler = netcrawl:run_crawler
     """
     )

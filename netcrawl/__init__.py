@@ -1,6 +1,7 @@
 import chunker
 import scanner
 import receiver
+import crawler
 
 
 def run_scanner():
@@ -24,3 +25,7 @@ def run_dump():
 def run_test():
     c = chunker.Chunker("localhost")
     c.run_test()
+
+def run_crawler():
+    cr = crawler.Crawler("localhost")
+    cr.run()
