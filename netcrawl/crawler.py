@@ -61,7 +61,7 @@ class Crawler(object):
                         response = requests.get("http://{0}:{1}".format(
                             result['ip'],
                             port))
-                    if response.status_code == 200:
+                    if response and response.status_code == 200:
                         pages.append(WebPage(response.text, result['ip'],port))
             pprint(pages)
             print "---"
