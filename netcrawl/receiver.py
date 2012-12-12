@@ -2,7 +2,7 @@
 Listen on the outqueue and display the results as they come in
 """
 from RedisQueue import RedisQueue
-from pprint import pprint
+from pprint import pprint, pformat
 
 
 class Receiver(object):
@@ -14,3 +14,11 @@ class Receiver(object):
             result = self.output_queue.get().data
             pprint(result)
             print "---"
+
+    def run_dump(self):
+        dumpfile = open("netcrawl.log", "w")
+        while True:
+            result = self.output_queue.get().data
+            pprint(result)
+            dumpfile.write(dumpfile)
+            dumpfile.flush()
