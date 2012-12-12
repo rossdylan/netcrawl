@@ -54,7 +54,7 @@ class Crawler(object):
                         try:
                             response = requests.get("https://{0}:{1}".format(
                                 result['ip'],
-                                port))
+                                port), verify=False)
                         except:
                             pass
                     else:
