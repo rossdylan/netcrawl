@@ -7,6 +7,7 @@ setup(
     author='Ross Delinger',
     author_email='rossdylan@csh.rit.edu',
     install_requires = [
+        'beautifulsoup4',
         'requests',
         'redis',
         'retask==0.3',
