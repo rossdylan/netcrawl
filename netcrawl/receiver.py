@@ -20,5 +20,5 @@ class Receiver(object):
         while True:
             result = self.output_queue.get().data
             pprint(result)
-            dumpfile.write(pformat(result))
+            dumpfile.write(pformat(result) + "\n")
             dumpfile.flush()
