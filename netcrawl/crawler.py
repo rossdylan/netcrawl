@@ -41,8 +41,8 @@ class Crawler(object):
             web_ports = filter(lambda p: p['num'] != '21', open_ports)
             pages = []
             if web_ports != []:
-                for port in web_ports:
-                    port = int(port)
+                for port_dict in web_ports:
+                    port = int(port_dict['num'])
                     if port == 443:
                         response = requests.get("https://{0}:{1}".format(
                             result['ip'],
