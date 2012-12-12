@@ -1,6 +1,6 @@
 from RedisQueue import RedisQueue
 from bs4 import BeautifulSoup
-from pprint import pprint
+from pprint import pprint, pformat
 import requests
 
 
@@ -28,6 +28,12 @@ class WebPage(object):
                 self.ip,
                 self.port)
 
+    def __repr__(self):
+        return "{0}:{1}\n{2}".format(
+                self.ip,
+                self.port,
+                pformat(self.links))
+
 
 class Crawler(object):
     def __init__(self, redis_host):
@@ -37,6 +43,7 @@ class Crawler(object):
     def run(self):
         while True:
             result = self.output_queue.get().data
+            print "Processing: {0}".format(result['ip'])
             open_ports = filter(lambda p: p['state']=='open',result['ports'])
             web_ports = filter(lambda p: p['num'] != '21', open_ports)
             pages = []
@@ -57,6 +64,7 @@ class Crawler(object):
                     if response.status_code == 200:
                         pages.append(WebPage(response.text, result['ip'],port))
             pprint(pages)
+            print "---"
 
 
 
