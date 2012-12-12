@@ -60,7 +60,7 @@ class Crawler(object):
                     else:
                         response = requests.get("http://{0}:{1}".format(
                             result['ip'],
-                            port))
+                            port),verify=False)
                     if response and response.status_code == 200:
                         pages.append(WebPage(response.text, result['ip'],port))
             pprint(pages)
