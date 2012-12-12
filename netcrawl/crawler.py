@@ -44,9 +44,12 @@ class Crawler(object):
                 for port_dict in web_ports:
                     port = int(port_dict['num'])
                     if port == 443:
-                        response = requests.get("https://{0}:{1}".format(
-                            result['ip'],
-                            port))
+                        try:
+                            response = requests.get("https://{0}:{1}".format(
+                                result['ip'],
+                                port))
+                        except:
+                            pass
                     else:
                         response = requests.get("http://{0}:{1}".format(
                             result['ip'],
