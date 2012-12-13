@@ -76,5 +76,7 @@ class Crawler(object):
                     if response and response.status_code == 200:
                         page = WebPage(response.text, result['ip'], port)
                         print page
-                        self.pages_queue.put(page)
+                        if page.links != []:
+                            self.pages_queue.put(page)
+
             print "---"
