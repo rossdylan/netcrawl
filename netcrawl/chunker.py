@@ -12,9 +12,14 @@ class Chunker(object):
 
     def run(self):
         chunk_id = 0
-        for a in shuffle(range(1, 255)):
-            for b in shuffle(range(1, 255)):
-                for c in shuffle(range(1, 255)):
+        a_range = xrange(1,10) + xrange(10,256)
+        for a in shuffle(a_range):
+            for b in shuffle(xrange(1, 255)):
+                if a == 172 and b in xrange(16,32):
+                    continue
+                if a == 192 and b == 168:
+                    continue
+                for c in shuffle(xrange(1, 255)):
                     ip_range = "{0}.{1}.{2}.0/24".format(a, b, c)
                     print "Sending chunk {0} range: {1}".format(chunk_id,
                             ip_range)
@@ -25,5 +30,6 @@ class Chunker(object):
                     self.work_queue.put(task)
                     chunk_id += 1
                     sleep(10)
+
     def run_test(self):
         self.work_queue.put({"range": "129.21.50.0/24", "id":0})
