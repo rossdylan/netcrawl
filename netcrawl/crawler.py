@@ -77,6 +77,6 @@ class Crawler(object):
                         page = WebPage(response.text, result['ip'], port)
                         print page
                         if page.links != []:
-                            self.pages_queue.put(page)
+                            self.pages_queue.put(page.to_dict())
 
             print "---"
