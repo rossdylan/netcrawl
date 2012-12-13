@@ -60,23 +60,24 @@ class Crawler(object):
                 for port_dict in web_ports:
                     port = int(port_dict['num'])
                     if port == 443:
-                        try:
-                            response = requests.get("https://{0}:{1}".format(
+                        url_string = "https://{0}:{1}".format(
                                 result['ip'],
-                                port), verify=False)
-                        except:
-                            print "Error crawling: {0}:{1}".format(
-                                    result['ip'],
-                                    port)
-                            pass
+                                result['port'])
                     else:
-                        response = requests.get("http://{0}:{1}".format(
-                            result['ip'],
-                            port), verify=False)
+                        url_string = "http://{0}:{1}".format(
+                                result['ip'],
+                                result['port'])
+
+                    try:
+                        response = requests.get(url_string, verify=False)
+                    except Exception as e:
+                        print "Error crawling: {0}:{1} -> {2}".format(
+                                result['ip'],
+                                port,
+                                str(e))
+
                     if response and response.status_code == 200:
                         page = WebPage(response.text, result['ip'], port)
                         print page
                         if page.links != []:
                             self.pages_queue.put(page.to_dict())
-
-            print "---"
