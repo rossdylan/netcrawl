@@ -62,11 +62,11 @@ class Crawler(object):
                     if port == 443:
                         url_string = "https://{0}:{1}".format(
                                 result['ip'],
-                                result['port'])
+                                port)
                     else:
                         url_string = "http://{0}:{1}".format(
                                 result['ip'],
-                                result['port'])
+                                port)
 
                     try:
                         response = requests.get(url_string, verify=False)
