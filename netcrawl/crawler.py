@@ -1,6 +1,6 @@
 from RedisQueue import RedisQueue
 from bs4 import BeautifulSoup
-from pprint import pprint, pformat
+from pprint import pformat
 import requests
 
 
@@ -12,7 +12,7 @@ class WebPage(object):
         soup = BeautifulSoup(self.html)
         a_tags = soup.find_all('a')
 
-        all_links = map(lambda l: l.get('href'),a_tags)
+        all_links = map(lambda l: l.get('href'), a_tags)
         all_links = filter(lambda l: l != None, all_links)
         relative_links = filter(lambda l: l.startswith("/"), all_links)
         other_thinks = filter(lambda l: not l.startswith("/"), all_links)
@@ -29,6 +29,14 @@ class WebPage(object):
                 self.ip,
                 self.port)
 
+    def to_dict(self):
+        return {
+                'ip': self.ip,
+                'port': self.port,
+                'html': self.html,
+                'links': self.links
+               }
+
     def __repr__(self):
         return "{0}:{1}\n{2}".format(
                 self.ip,
@@ -44,10 +52,10 @@ class Crawler(object):
     def run(self):
         while True:
             result = self.output_queue.get().data
-            open_ports = filter(lambda p: p['state']=='open',result['ports'])
+            open_ports = filter(lambda p: p['state'] == 'open',
+                    result['ports'])
             web_ports = filter(lambda p: p['num'] != 21, open_ports)
             print "Processing: {0}".format(result['ip'])
-            pages = []
             if web_ports != []:
                 for port_dict in web_ports:
                     port = int(port_dict['num'])
@@ -57,17 +65,16 @@ class Crawler(object):
                                 result['ip'],
                                 port), verify=False)
                         except:
+                            print "Error crawling: {0}:{1}".format(
+                                    result['ip'],
+                                    port)
                             pass
                     else:
                         response = requests.get("http://{0}:{1}".format(
                             result['ip'],
-                            port),verify=False)
+                            port), verify=False)
                     if response and response.status_code == 200:
-                        pages.append(WebPage(response.text, result['ip'],port))
-            pprint(pages)
+                        page = WebPage(response.text, result['ip'], port)
+                        print page
+                        self.pages_queue.put(page)
             print "---"
-
-
-
-
-
