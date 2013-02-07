@@ -11,6 +11,7 @@ setup(
         'requests',
         'redis',
         'pyelasticsearch',
+        'nltk',
         'retask==0.3',
     ],
     packages=['netcrawl'],
