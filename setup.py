@@ -22,7 +22,7 @@ setup(
     netcrawl_receiver = netcrawl:run_receiver
     netcrawl_dump = netcrawl:run_dump
     netcrawl_test = netcrawl:run_test
-    netcrawl_crawler = netcrawl:run_crawler
+    netcrawl_spider = netcrawl:run_spider
     netcrawl_indexer = newcrawl:run_indexer
     """
     )
