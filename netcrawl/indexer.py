@@ -2,12 +2,21 @@ from RedisQueue import RedisQueue
 import pyelasticsearch
 import nltk
 from nltk.collocations import *
+import string
+
+
+def prepareHTML(html):
+    text = nltk.clean_html(html)
+    for p in string.punctuation + "\n":
+        text.replace(p, "")
+    words = text.split(" ")
+    return words
 
 
 def genTags(html):
-    text = nltk.clean_html(html)
+    words = prepareHTML(html)
     bigram_measures = nltk.collocations.BigramAssocMeasures()
-    finder = BigramCollocationFinder.from_words(text)
+    finder = BigramCollocationFinder.from_words(words)
     finder.apply_freq_filter(3)
     return finder.nbest(bigram_measures.pmi, 5)
 
