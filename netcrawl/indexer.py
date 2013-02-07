@@ -2,6 +2,7 @@ from RedisQueue import RedisQueue
 import pyelasticsearch
 import nltk
 from nltk.collocations import *
+from itertools import chain
 import string
 
 
@@ -18,7 +19,7 @@ def genTags(html):
     bigram_measures = nltk.collocations.BigramAssocMeasures()
     finder = BigramCollocationFinder.from_words(words)
     finder.apply_freq_filter(3)
-    return finder.nbest(bigram_measures.pmi, 5)
+    return chain.from_iterable(finder.nbest(bigram_measures.pmi, 5))
 
 
 class Indexer(object):
