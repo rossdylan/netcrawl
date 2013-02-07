@@ -23,6 +23,6 @@ setup(
     netcrawl_dump = netcrawl:run_dump
     netcrawl_test = netcrawl:run_test
     netcrawl_spider = netcrawl:run_spider
-    netcrawl_indexer = newcrawl:run_indexer
+    netcrawl_indexer = netcrawl:run_indexer
     """
     )
