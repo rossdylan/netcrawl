@@ -10,7 +10,7 @@ def prepareHTML(html):
     text = nltk.clean_html(html)
     for p in string.punctuation + "\n":
         text.replace(p, "")
-    words = text.split(" ")
+    words = nltk.word_tokenize(text.lower())
     return words
 
 
@@ -18,7 +18,7 @@ def genTags(html):
     words = prepareHTML(html)
     bigram_measures = nltk.collocations.BigramAssocMeasures()
     finder = BigramCollocationFinder.from_words(words)
-    return list(chain.from_iterable(finder.nbest(bigram_measures.pmi, 5)))
+    return list(chain.from_iterable(finder.nbest(bigram_measures.pmi, 15)))
 
 
 class Indexer(object):
