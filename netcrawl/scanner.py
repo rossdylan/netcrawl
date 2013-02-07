@@ -14,7 +14,7 @@ class Scanner(object):
     """
     def __init__(self, redis_host):
         self.redis_host = redis_host
-        self.scan_params = "proxychains nmap -f --randomize-hosts -g 21 -sS -p21,80,443,8000,8080 -oX - -D RND,RND,RND,RND,RND,RND,RND --privileged {0}"
+        self.scan_params = "nmap -f --randomize-hosts -g 21 -sS -p21,80,443,8000,8080 -oX - -D RND,RND,RND,RND,RND,RND,RND --privileged {0}"
         self.in_queue = RedisQueue(self.redis_host, "inqueue")
         self.out_queue = RedisQueue(self.redis_host, "outqueue")
 

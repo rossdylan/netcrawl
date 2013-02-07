@@ -33,3 +33,4 @@ class Chunker(object):
 
     def run_test(self):
         self.work_queue.put({"range": "129.21.50.0/24", "id":0})
+        self.work_queue.put({"range": "129.21.49.0/24", "id":1})

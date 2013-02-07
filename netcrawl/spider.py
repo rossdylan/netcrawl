@@ -34,6 +34,7 @@ class Spider(object):
                                 result['ip'],
                                 port,
                                 str(e))
+                        continue
 
                     if response and response.status_code == 200:
                         page = WebPage(response.text, result['ip'], port)
