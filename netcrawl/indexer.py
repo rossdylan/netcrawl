@@ -18,8 +18,7 @@ def genTags(html):
     words = prepareHTML(html)
     bigram_measures = nltk.collocations.BigramAssocMeasures()
     finder = BigramCollocationFinder.from_words(words)
-    finder.apply_freq_filter(3)
-    return chain.from_iterable(finder.nbest(bigram_measures.pmi, 5))
+    return list(chain.from_iterable(finder.nbest(bigram_measures.pmi, 5)))
 
 
 class Indexer(object):
