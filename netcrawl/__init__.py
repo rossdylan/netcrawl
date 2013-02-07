@@ -2,6 +2,7 @@ import chunker
 import scanner
 import receiver
 import spider
+import crawler
 import indexer
 import sys
 
@@ -14,7 +15,6 @@ def run_scanner():
 def run_chunker():
     c = chunker.Chunker(sys.argv[1])
     c.run()
-
 
 def run_receiver():
     r = receiver.Receiver(sys.argv[1])
@@ -31,6 +31,10 @@ def run_test():
 def run_spider():
     sp = spider.Spider(sys.argv[1])
     sp.run()
+
+def run_crawler():
+    cr = crawler.Crawler(sys.argv[1])
+    cr.run()
 
 def run_indexer():
     ind = indexer.Indexer(sys.argv[1], sys.argv[2:])
