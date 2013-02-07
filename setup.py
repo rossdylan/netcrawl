@@ -10,7 +10,7 @@ setup(
         'beautifulsoup4',
         'requests',
         'redis',
-        'pyelasticsearch'
+        'pyelasticsearch',
         'retask==0.3',
     ],
     packages=['netcrawl'],
