@@ -2,7 +2,9 @@ import chunker
 import scanner
 import receiver
 import spider
+import indexer
 import sys
+
 
 def run_scanner():
     s = scanner.Scanner(sys.argv[1])
@@ -29,3 +31,7 @@ def run_test():
 def run_spider():
     sp = spider.Spider(sys.argv[1])
     sp.run()
+
+def run_indexer():
+    ind = indexer.Indexer(sys.argv[1], sys.argv[2:])
+    ind.run()

@@ -10,6 +10,7 @@ setup(
         'beautifulsoup4',
         'requests',
         'redis',
+        'pyelasticsearch'
         'retask==0.3',
     ],
     packages=['netcrawl'],
@@ -22,5 +23,6 @@ setup(
     netcrawl_dump = netcrawl:run_dump
     netcrawl_test = netcrawl:run_test
     netcrawl_crawler = netcrawl:run_crawler
+    netcrawl_indexer = newcrawl:run_indexer
     """
     )
