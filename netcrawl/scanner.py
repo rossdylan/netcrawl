@@ -1,4 +1,8 @@
-from subprocess import check_output
+try:
+    from subprocess import check_output
+except:
+    from subprocess import Popen, PIPE
+    check_output = lambda cmd: Popen(cmd, stdout=PIPE).communicate()[0]
 from NmapResult import GenerateHosts
 from RedisQueue import RedisQueue
 import shlex
