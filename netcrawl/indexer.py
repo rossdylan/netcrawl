@@ -6,7 +6,7 @@ class Indexer(object):
         self.pages_queue = RedisQueue(redis_host, "pagesqueue") # take pages out of this queue
         self.links_queue = RedisQueue(redis_host, "linksqueue") # put links into this queue
         self.connection = pyelasticsearch.ElasticSearch(es_urls)
-        self.connection.put('webpages','webpage', {
+        self.connection.put_mapping('webpages','webpage', {
             "ip": {"type": "string", "store": "yes"},
             "port": {"type": "integer", "store": "yes"},
             "html": {"type": "string", "store": "yes"},
