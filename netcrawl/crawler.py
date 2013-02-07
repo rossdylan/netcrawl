@@ -1,5 +1,5 @@
 import requests
-from RegisQueue import RedisQueue
+from RedisQueue import RedisQueue
 from model import WebPage
 
 goodExtensions = ['php','txt','html','py','xhtml','xml','atom','rss','htm','js']
