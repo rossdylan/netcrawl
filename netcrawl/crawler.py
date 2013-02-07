@@ -12,7 +12,10 @@ class Crawler(object):
     def run(self):
         while True:
             link = self.links_queue.get().data
-            page = WebPage(requests.get(link).text, link, 80)
+            try:
+                page = WebPage(requests.get(link).text, link, 80)
+            except:
+                print("Exception GETing {0}".format(link))
             self.pages_queue.put(page.to_dict())
 
 
