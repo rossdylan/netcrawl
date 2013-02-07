@@ -16,6 +16,7 @@ class Crawler(object):
                 page = WebPage(requests.get(link).text, link, 80)
             except:
                 print("Exception GETing {0}".format(link))
+                continue
             self.pages_queue.put(page.to_dict())
 
 
