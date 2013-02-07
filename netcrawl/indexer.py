@@ -5,7 +5,7 @@ from nltk.collocations import *
 
 
 def genTags(html):
-    text = nltk.client_html(html)
+    text = nltk.clean_html(html)
     bigram_measures = nltk.collections.BigramAssocMeasures()
     finder = BigramCollocationFinder.from_words(text)
     finder.apply_freq_filter(3)
